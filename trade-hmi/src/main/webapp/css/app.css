@@ -1,0 +1,258 @@
+﻿.container-fluid {
+    padding: 0px;
+}
+.navbar-static-top
+{
+    margin-bottom: 0px;
+}
+.btn {
+    white-space: normal;
+}
+.headercontent
+{
+    padding-left:20px ;
+    padding-right: 20px;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto Condensed', Open Sans, Arial, sans-serif;
+    font-size: 12px;
+}
+.container-fluid
+{
+    margin: 0px;
+    padding: 0px;
+}
+.website-header >div
+{
+    padding-right: 10px;
+}
+.website-header
+{
+    margin-bottom: 1px;
+    border-radius : 0px;
+}
+
+/*to show equal height of divs start*/
+.mainusercontent >[class*="col-"] {
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+}
+.nav-tabs > li
+{
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    zoom:1; /* hasLayout ie7 trigger */
+}
+/*to show equal height of divs end*/
+.mainusercontent
+{
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px !important;
+    margin-left: 0px;
+    margin-right: 0px;
+    display: table;
+    height: 100%;
+    width: 100%;
+    /*border-bottom: solid 1px;*/
+    border-color: grey;
+}
+/*left pane start*/
+.userprofile
+{
+    padding-bottom: 10px;
+    margin-left: 1%;
+}
+.userprofile > ul >li :last-child
+{
+    /*text-align: justify;*/
+
+}
+.usernavigation
+{
+    padding-bottom: 20px;
+}
+.userleftpane > div
+{
+    /*border-bottom: solid 1px;*/
+    border-color: grey;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-left: 1%;
+
+}
+
+.userPaneLeft
+{
+    background-color: lavender;
+    /*padding-left: 4px;*/
+    /*padding-left: 2px;*/
+    /*padding-right: 0px;*/
+    padding-right: 2px;
+    display: table-cell;
+}
+
+.usernotification >ul
+{
+    margin-top: 30px;
+}
+/*left pane end*/
+
+/*right pane start*/
+.userPaneRight
+{
+    background-color: lavender;
+    padding-left: 4px;
+    /*padding-left: 0px;*/
+    /*padding-right: 0px;*/
+    padding-right: 4px;
+    height: 100%;
+    display: table-cell;
+}
+.userPaneRight >div
+{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+/*right pane end*/
+
+/*center pane start*/
+.userpostcontent
+{
+    display: table-cell;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.fanfeed
+{
+    padding:0;
+    list-style:none;
+}
+.fanfeed li {
+    margin:0;
+    margin-top:10px;
+}
+.feedinfo
+{
+    display: inline-block;
+    width: 15%;
+    padding: 0px;
+    height:100%;
+    float:left;
+}
+
+.feeddata
+{
+    display: inline-block;
+    width: 85%;
+}
+.feeddatainfo
+{
+    font-family: 'Roboto Condensed', Open Sans, Arial, sans-serif;
+    font-size: small;
+    text-align: end;
+    padding-right: 3px;
+}
+/*centre pane end*/
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+.thumbnail
+{
+    padding: 0px;
+}
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+.sharepost
+{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.sharepost > div
+{
+    margin-bottom: 20px;
+}
+
+.sharepost >div > button
+{
+    width: 50%;
+    margin-top: 20px;
+    heigth:  1em;
+}
+
+.selectize-control.multi .selectize-input > div {
+    background-color: #0051c1;
+    color:#ffffff ;
+}
+
+pre {
+    white-space: pre-line;       /* CSS 3 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    word-break:normal;
+    background-color:transparent;
+    border:none;
+    padding:0px;
+}
+
+.linksnapshot
+{
+    height : 200px;
+    width : 100%;
+    overflow : hidden;
+}
+
+.fanfeed li:nth-child(even) {
+    background: rgba(202, 165, 119, 0.12);
+}
+
+.fanfeed li:nth-child(odd) {
+    background: #ffffff;
+}

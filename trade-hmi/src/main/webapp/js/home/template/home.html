@@ -1,0 +1,13 @@
+<div class="container">
+  <ul class="nav nav-pills">
+    <li><a ng-click="readTrades()" href="">Trade History</a></li>
+    <li><a ng-click="trade()" href="">Trade</a></li>
+    <li><a ng-click="stocks()" href="">Stocks Details</a></li>
+  </ul>
+  
+  <div ng-if="nestedView">
+  	<div>
+        <viewpart directiveName="{{directiveName}}" ></viewpart>
+    </div>
+  </div>
+</div>

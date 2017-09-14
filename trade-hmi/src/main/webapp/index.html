@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="sapientApp">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Trade Management</title>
+    <!-- jquery -->
+    <script src="thirdparty/js/jquery-1.11.3.js"></script>
+    <script src="thirdparty/js/bootstrap.js"></script>
+    
+    <!--angular js -->
+    <script src="thirdparty/js/angular.js"></script>
+    <script src="thirdparty/js/angular-animate.js"></script>
+    <script src="thirdparty/js/angular-resource.js"></script>
+    <script src="thirdparty/js/angular-route.js"></script>
+    <script src="thirdparty/js/angular-cookies.js"></script>
+    <script src="thirdparty/js/angular-sanitize.js"></script>
+    <script src="thirdparty/js/selectize.js"></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="thirdparty/css/bootstrap.css">
+    <link rel="stylesheet" href="thirdparty/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="thirdparty/css/bootstrap-social.css">
+    <link rel="stylesheet" href="thirdparty/css/font-awesome.css">
+    <link rel="stylesheet" href="thirdparty/css/selectize.bootstrap3.css">
+
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="css/comments.css" rel="stylesheet" />
+    <link href="css/twitter.css" rel="stylesheet" />
+
+</head>
+
+<body class="container-fluid">
+
+ 	<header-directive></header-directive>
+
+	 <div class="row">
+           <div ng-view></div>
+     </div>
+
+	<script src="js/App.js"></script>
+	<script src="js/service/LoginService.js"></script>
+	<script src="js/service/FlashService.js"></script>
+	<script src="js/service/UserService.js"></script>
+	<script src="js/service/TradeService.js"></script>
+	
+	<script src="js/viewpart/directive/viewpart.js"></script>
+
+	<script src="js/login/controller/LoginController.js"></script>
+	<script src="js/login/directive/LoginDirective.js"></script>
+
+	<script src="js/header/controller/HeaderController.js"></script>
+	<script src="js/header/directive/HeaderDirective.js"></script>
+	
+	<script src="js/register/controller/RegisterController.js"></script>
+	<script src="js/register/directive/RegisterDirective.js"></script>
+	
+	<script src="js/trade/controller/TradeController.js"></script>
+	<script src="js/trade/directive/TradeDirective.js"></script>
+	
+	<script src="js/home/controller/HomeController.js"></script>
+	<script src="js/welcome/controller/WelcomeController.js"></script>
+	<script src="js/game/controller/GameController.js"></script>
+
+</body>
+</html> 

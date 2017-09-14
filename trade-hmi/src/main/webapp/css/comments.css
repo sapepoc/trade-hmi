@@ -1,0 +1,47 @@
+.detailBox {
+    padding:10px;
+}
+.detailBox .form-group:first-child, .detailBox .form-group:first-child {
+    width:80%;
+}
+.detailBox .form-group:nth-child(2), .detailBox .form-group:nth-child(2) {
+    width:18%;
+}
+.detailBox .form-group * {
+    width:100%;
+}
+.commentList {
+    padding:0;
+    list-style:none;
+    max-height:300px;
+    overflow:auto;
+}
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+/*.commentList li > div  {*/
+    /*display:table-cell;*/
+/*}*/
+.commenterImage {
+    display: inline-block;
+    width:15%;
+    margin-right:5px;
+    height:100%;
+    float:left;
+}
+.commenterImage img {
+    width:30px;
+    height: 30px;
+    border-radius:50%;
+}
+.commentText {
+    display: inline-block;
+    width:70%;
+    margin:0;
+}
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
