@@ -1,80 +1,51 @@
-<div id="navDiv" style="float:left;width:180px;min-height: 876px;background-color:orange;" >
+<div id="navDiv" style="float:left;width:180px;min-height: 780px;margin-left:6px;background-color:orange;" >
 
-
-<span style=""ng-repeat="d in ruleTypes">
-    <input type="checkbox" id="{{d}}" ng-model="selectedList[d]"/>
-    <label for="{{d.value}}">{{d}}</label>
-</span>
-<button class="btn btn-default" style="background-color: orange;" ng-click="findTrades()">Submit Types</button>
-
+	<table class="table">
+			<th style="color: ghostwhite;"> Select Rule(s) </th>
+			<tr ng-repeat="ruleType in ruleTypes">
+			<td><label for="{{ruleType.value}}">{{ruleType}}</label></td>
+			<td><input type="checkbox" id="{{ruleType}}" ng-model="selectedList[ruleType]"/></td>
+			</tr>
+			<tr style="text-align:center;">
+			<td>
+			<button class="btn btn-default" style="background-color: orange;" ng-click="findTrades()">Find Trades</button></td><td></td>
+			</tr>
+	</table>
 </div>
 
-<div class="container" style="color: white;min-height: 780px;background: url(http://www.addictinggames.com/a/img/ag_bg.jpg);min-width: 1250px;float: right;margin-right: 22px;">
+<div class="container" style="color: white;min-height: 780px;background: url(http://www.addictinggames.com/a/img/ag_bg.jpg);min-width: 1220px;float: right;margin-right: 46px;">
   <div>
   	<h3>So you are here ....</h3><p>Finally you found the courage to fight injustice</p> 
-  	
-  	<button class="btn btn-default" style="background-color: orange;" ng-click="findTrades()">Find Trades</button>
   </div>
-  <p></p>
-  <div>
-  
-
-          
-
-          
-     <div dynamic-layout items="cards" style="width: 99%;margin-top: 90px;min-height: 600px;border-style: solid;border-radius: 10px;"></div> 
-   
-      <div ng-if="tradeAvailable" >
-               
-   
- <!--   	<div>
-   		<table class="table">
-			<tr>
-				<th ng-repeat="headerContent in headerContents">{{headerContent}}</th>
-			</tr>
-			<tr ng-repeat="trade in trades">
-			<td>{{trade.id}}</td>
-			<td>{{trade.party1}}</td>
-			<td>{{trade.party2}}</td>
-			<td>{{trade.instrument}}</td>
-			<td>{{trade.executionDate | date : "dd:MM:yyyy"}}</td>
-			<td>{{trade.direction}}</td>
-			<td>{{trade.rate}}</td>
-			<td>{{trade.volume}}</td>
-			<td><input type = "checkbox" ng-model="trade.selected"
-                 id = "{{trade.id}}"
-                 value = "{{trade}}" /></td>
-			</tr>
-		</table>
-   	</div>
-   
-  	<div>
-		<div>
-			<button ng-click="findAlerts()">Arrest These Trades And Produce To Court</button>
-		</div>
-    </div>
-  -->
-  	<div ng-if="alertsAvailable" style="text-align: right;">
-  		<div >
-			<div>
-				<H4>{{message}}</H4>
-				<div>
-        			<ul ng-repeat="alert in alerts">
-						<li>
-							<label>
-								{{alert.message}} for trade - {{alert.businessObject.id}}
-							</label>
-						</li>
-					</ul>
-				</div>
-			</div>
-    	</div>
-  	</div>
-  	
-  	<div style="float:left;margin-bottom: 18px;margin-top: 5px;">
+  <div ng-if="tradeAvailable" >
+    <div dynamic-layout items="cards" style="width: 99%;min-height: 550px;border-style: solid;border-radius: 10px;"></div> 
+    
+  	<div style="float:left;margin-bottom: 18px;margin-top: 5px;width: 260px;">
 			<button class="btn btn-default" style="background-color: orange;" ng-click="findAlerts()">Evaluate and Arrest These Trades</button>
+	</div>
+	
+	<div ng-if="alertsAvailable" style="width: 100%">
+	
+  		<div style="width: 25%;float: left;">
+  				<img class="img-responsive" alt="ninja image" style="height: 250px;width: 250px;text-align: right;margin-top: 20px;"  ng-src="{{ninjaImage}}"/>
+  		</div>
+  		
+  		<div style="float: left;width: 45%;margin-top: 30px;font-size: 25px;color: orange;">
+  			<p>{{message}}</p>
+  		</div>
+  		<div style="width:100%">
+  		<div style="width:25%"></div>
+  		
+  		<div style="float: left;width: 50%;margin-top: 30px;font-size: 15px;">
+        <ul ng-repeat="alert in alerts">
+			<li>
+				<label>{{alert.message}} for trade - {{alert.businessObject.tradeId}}</label>
+			</li>
+		</ul>
 		</div>
-  	
- </div>
+  		</div>
+  		
+  		
+	</div>
  </div>
 </div> 

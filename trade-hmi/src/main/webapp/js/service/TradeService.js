@@ -24,7 +24,7 @@ app.service('tradeService',['$http', '$cookieStore', '$rootScope', '$timeout',fu
     	return $http({
     		url: '/applyRules',
     		method: 'POST',
-    		data:tradeIds,
+    		data:{'tradeIds':tradeIds , 'selectedRules':selectedRules},
     		headers: {'Content-Type': 'application/json;charset=utf-8'}
     	}).then(handleSuccess, handleError('Error in applying rule'));
     }

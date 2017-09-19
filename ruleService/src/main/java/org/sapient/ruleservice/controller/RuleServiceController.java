@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.sapient.ruleservice.RuleEngineService;
+import org.sapient.ruleservice.dto.RequestEntity;
 import org.sapient.ruleservice.loader.impl.TradeFatory;
 import org.sapient.ruleservice.models.Trade;
 import org.sapient.ruleservice.rule.RuleResult;
@@ -54,16 +55,9 @@ public class RuleServiceController {
 		return tradeFatory.findTrades(ramdomNumbers);	
 	} 
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/applyRules", consumes = "application/json")
-	public @ResponseBody List<RuleResult> applyRules(@RequestBody List<String> tradeIds){
-		System.out.println("apply rule enterted on trades="+tradeIds);
-		return ruleEngineService.runRules(tradeFatory.getTrades(tradeIds));
-	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/applyRules", consumes = "application/json")
-	public @ResponseBody List<RuleResult> applyRules(@RequestBody List<String> tradeIds, 
-			@RequestBody List<String> ruleIds){
-		System.out.println("apply rule enterted on ruleIds="+ruleIds);
-		return ruleEngineService.runRules(tradeFatory.getTrades(tradeIds));
+	public @ResponseBody List<RuleResult> applyRules(@RequestBody RequestEntity requestEntity){
+		return ruleEngineService.runRules(tradeFatory.getTrades(requestEntity.getTradeIds()), requestEntity.getSelectedRules());
 	}
 }

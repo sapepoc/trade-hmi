@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.sapient.hmi.dto.RequestEntity;
 import com.sapient.hmi.trade.models.RuleResult;
 import com.sapient.hmi.trade.models.Trade;
 import com.sapient.hmi.trade.service.TradeService;
@@ -31,12 +32,14 @@ public class TradeServiceImpl implements TradeService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Trade> readAll() {
-		return (List<Trade>)restTemplate.getForEntity(searchTradesUrl, List.class).getBody();
+		final List<Trade> trades = (List<Trade>)restTemplate.getForEntity(searchTradesUrl, List.class).getBody();
+		return trades;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RuleResult> applyRules(List<String> tradesId){
-		return (List<RuleResult>)restTemplate.postForObject(runRulesUrl, tradesId, List.class);
+	public List<RuleResult> applyRules(final RequestEntity requestEntity) {
+		return (List<RuleResult>)restTemplate.postForObject(runRulesUrl, requestEntity, List.class);
 	}
+
 }

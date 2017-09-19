@@ -6,6 +6,7 @@ import java.util.Date;
 public class Trade {
 	
 	private String id;
+	private String tradeId;
 	private String instrument;
 	private String party1;
 	private String party2;
@@ -17,6 +18,14 @@ public class Trade {
 	private String productId;
 	private Date settlementDate;
 	
+	public String getTradeId() {
+		return tradeId;
+	}
+
+	public void setTradeId(String tradeId) {
+		this.tradeId = tradeId;
+	}
+
 	public String getProductId() {
 		return productId;
 	}

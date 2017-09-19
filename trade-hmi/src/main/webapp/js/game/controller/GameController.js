@@ -8,7 +8,7 @@
 						
 						$scope.selectedList = {};
 
-						$scope.ruleTypes = ['AbnomalVolume', 'WashTradeRule', 'ABC'];
+						$scope.ruleTypes = ['AbnomalVolume', 'WashTradeRule', 'MarkUpDownRule'];
 						
 						
 						$scope.showingMoreText = false;
@@ -26,13 +26,17 @@
 						var tradeAvailable = false;
 						var alertsAvailable = false;
 						$scope.findTrades = function() {
-
+							var isAnySelected = false;
 							var selectedRules = new Array();
 							angular.forEach($scope.selectedList, function (selected, d) {
 						        if (selected) {
 						        	selectedRules.push(d);
+						        	isAnySelected = true;
 						        }
 						    });
+						    if(isAnySelected == false){
+						    	alert('Please select at least one rule');
+						    }else{
 							$scope.selectedTypes=selectedRules;
 							// Restart the alerts
 							$scope.alertsAvailable = false;
@@ -41,7 +45,8 @@
 							tradeService.findTrades().then(function(response) {
 								tradeResponseProcess(response);
 							});
-						};
+						}
+					};
 
 						function tradeResponseProcess(response) {
 							if (response.success) {
@@ -186,9 +191,11 @@
 								$scope.alertsAvailable = true;
 								if (response.data.length > 0) {
 									$scope.alerts = response.data;
+									$scope.ninjaImage='img/panda_win.png';
 									$scope.message = 'Winner,Thanks Ninja for making this world a better place';
 								} else {
 									$scope.message = 'Sorry next time, but I see great potential of you becoming a high Surveillance Ninja';
+									$scope.ninjaImage='img/panda_loose.png';
 									$scope.alerts = [];
 								}
 

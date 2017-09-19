@@ -47,22 +47,24 @@ public class TradeFatory {
 	private Trade formTrade(final String line) throws ParseException{
 		Trade trade = new  Trade();
 		String[] tokens = line.split(",");
-		String tradeId = tokens[0];
-		double rate = Double.parseDouble(tokens[1]);
-		double volume = Double.parseDouble(tokens[2]);
-		String instrument = tokens[3];
-		String direction = tokens[4];
-		Date executionDate = TimeDimension.formatter.parse(tokens[5]);
+		String id = tokens[0];
+		String tradeId = tokens[1];
+		double rate = Double.parseDouble(tokens[2]);
+		double volume = Double.parseDouble(tokens[3]);
+		String instrument = tokens[4];
+		String direction = tokens[5];
+		Date executionDate = TimeDimension.formatter.parse(tokens[6]);
 		
 		
-		String party1 = tokens[6];
-		String party2 = tokens[7];
+		String party1 = tokens[7];
+		String party2 = tokens[8];
 		
-		String inHouse = tokens[8];
-		String productId = tokens[9];
-		Date selltementDate = TimeDimension.formatter.parse(tokens[10]);
+		String inHouse = tokens[9];
+		String productId = tokens[10];
+		Date selltementDate = TimeDimension.formatter.parse(tokens[11]);
 		
-		trade.setId(tradeId);
+		trade.setId(id);
+		trade.setTradeId(tradeId);
 		trade.setRate(rate);
 		trade.setVolume(volume);
 		trade.setInstrument(instrument);
