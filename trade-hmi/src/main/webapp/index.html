@@ -1,16 +1,107 @@
 <!DOCTYPE html>
-<html ng-app="sapientApp">
+<html >
 
 <head>
     <meta charset="utf-8" />
     <title>Trade Management</title>
+    
+    <link rel="stylesheet" href="bower_components/bootcards/dist/css/bootcards-desktop.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <script src="thirdparty/js/angular.js"></script>
+    <script src="thirdparty/js/angular-animate.js"></script>
+    <script src="bower_components/angular-dynamic-layout/dist/angular-dynamic-layout.min.js"></script>
+
+    <style>
+
+    @media (min-width: 900px) {
+      [dynamic-layout]{
+        width: 900px;
+        margin-top: 20px;
+      }
+      .dynamic-layout-col-4{
+        width : 300px;
+      }
+      .dynamic-layout-col-8{
+        width : 600px;
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 900px){
+      [dynamic-layout]{
+        width: 600px;
+      }
+      .dynamic-layout-col-4{
+        width : 300px;
+      }
+      .dynamic-layout-col-8{
+        width : 600px;
+      }
+    }
+
+    @media (max-width: 600px){
+      [dynamic-layout]{
+        width: 300px;
+      }
+      .dynamic-layout-col-4{
+        width : 300px;
+      }
+      .dynamic-layout-col-8{
+        width : 300px;
+      }
+    }
+
+    .dynamic-layout-item {
+      padding: 10px;
+    }
+
+    .move-items-animation{
+      transition-property: left, top;
+      transition-duration: .5s;
+      transition-timing-function: ease-in-out;
+    }
+
+    .dynamic-layout-item-parent.ng-enter{
+      transition: .5s ease-in-out;
+      opacity:0;
+    }
+    .dynamic-layout-item-parent.ng-enter.ng-enter-active{
+      opacity:1;
+    }
+
+    .dynamic-layout-item-parent.ng-leave{
+      transition: .5s ease-in-out;
+      opacity:1;
+    }
+    .dynamic-layout-item-parent.ng-leave.ng-leave-active{
+      opacity:0;
+    }
+
+    [dynamic-layout]{
+      float: left;
+      position: relative;
+    }
+
+    .container-fluid{
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+
+    }
+
+    .title{
+      margin-bottom: 50px;
+    }
+
+    </style>
+    
     <!-- jquery -->
     <script src="thirdparty/js/jquery-1.11.3.js"></script>
     <script src="thirdparty/js/bootstrap.js"></script>
+    <script src="thirdparty/js/JSON.js"></script>
     
     <!--angular js -->
-    <script src="thirdparty/js/angular.js"></script>
-    <script src="thirdparty/js/angular-animate.js"></script>
+<!--     <script src="thirdparty/js/angular.js"></script> -->
+    <!-- <script src="thirdparty/js/angular-animate.js"></script> -->
     <script src="thirdparty/js/angular-resource.js"></script>
     <script src="thirdparty/js/angular-route.js"></script>
     <script src="thirdparty/js/angular-cookies.js"></script>
@@ -23,6 +114,7 @@
     <link rel="stylesheet" href="thirdparty/css/bootstrap-social.css">
     <link rel="stylesheet" href="thirdparty/css/font-awesome.css">
     <link rel="stylesheet" href="thirdparty/css/selectize.bootstrap3.css">
+    
 
     <link href="css/app.css" rel="stylesheet" />
     <link href="css/comments.css" rel="stylesheet" />
@@ -30,7 +122,7 @@
 
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid" ng-app="sapientApp">
 
  	<header-directive></header-directive>
 
@@ -61,6 +153,9 @@
 	<script src="js/home/controller/HomeController.js"></script>
 	<script src="js/welcome/controller/WelcomeController.js"></script>
 	<script src="js/game/controller/GameController.js"></script>
+	
+	
+	
 
 </body>
 </html> 

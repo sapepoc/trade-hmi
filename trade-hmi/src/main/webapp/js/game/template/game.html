@@ -1,13 +1,36 @@
-<div class="container">
+<div style="">
+
+
+</div>
+
+<div class="container" style="color: white;min-height: 780px;background: url(http://www.addictinggames.com/a/img/ag_bg.jpg);min-width: 1250px;float: right;margin-right: 22px;">
   <div>
-  	<h2>So you are here ....</h2>
-  	<p>Finally you found the courage to fight injustice</p> 
-  	<button ng-click="findTrades()">Find Trades</button>
+  	<h3>So you are here ....</h3><p>Finally you found the courage to fight injustice</p> 
+  	
+  	<button class="btn btn-default" style="background-color: orange;" ng-click="findTrades()">Find Trades</button>
   </div>
   <p></p>
   <div>
-   <div ng-if="tradeAvailable">
-   	<div>
+  
+
+          
+   <div ng-if="tradeAvailable" >
+               <div class="col-md-6">
+
+            <div class="btn-group" role="group">
+                       
+            </div>
+          </div>
+   
+          
+   		<div>
+			<button class="btn btn-default" style="background-color: orange;" ng-click="findAlerts()">Arrest These Trades And Produce To Court</button>
+		</div>
+     <div dynamic-layout items="cards" style="width: 1150px; margin-top: 90px;""></div> 
+   
+   
+   
+ <!--   	<div>
    		<table class="table">
 			<tr>
 				<th ng-repeat="headerContent in headerContents">{{headerContent}}</th>
@@ -33,11 +56,11 @@
 			<button ng-click="findAlerts()">Arrest These Trades And Produce To Court</button>
 		</div>
     </div>
-  
-  	<div ng-if="alertsAvailable">
-  		<div>
+  -->
+  	<div ng-if="alertsAvailable" style="text-align: right;">
+  		<div >
 			<div>
-				<H2>{{message}}</H2>
+				<H4>{{message}}</H4>
 				<div>
         			<ul ng-repeat="alert in alerts">
 						<li>
@@ -52,4 +75,4 @@
   	</div>
  </div>
  </div>
-</div>
+</div> 

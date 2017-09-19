@@ -1,5 +1,6 @@
-var app = angular.module("sapientApp", ["ngRoute", 'ngCookies','ngSanitize']); 
+var app = angular.module("sapientApp", ["ngRoute", 'ngCookies','ngSanitize','dynamicLayout']); 
 app.config(function($routeProvider) {
+	
     $routeProvider
     .when("/login", {
         controller: 'LoginController',
@@ -21,7 +22,7 @@ app.config(function($routeProvider) {
         controller: 'RegisterController',
         templateUrl: 'js/register/template/register.html',
     })
-    .otherwise({ redirectTo: '/login' });
+    
 });
 
 app.run(function($rootScope, $location, $cookieStore, $http){
