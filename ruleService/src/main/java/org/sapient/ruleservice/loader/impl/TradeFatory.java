@@ -58,6 +58,10 @@ public class TradeFatory {
 		String party1 = tokens[6];
 		String party2 = tokens[7];
 		
+		String inHouse = tokens[8];
+		String productId = tokens[9];
+		Date selltementDate = TimeDimension.formatter.parse(tokens[10]);
+		
 		trade.setId(tradeId);
 		trade.setRate(rate);
 		trade.setVolume(volume);
@@ -66,6 +70,9 @@ public class TradeFatory {
 		trade.setExecutionDate(LocalDateTime.ofInstant(executionDate.toInstant(), ZoneId.systemDefault()));
 		trade.setParty1(party1);
 		trade.setParty2(party2);
+		trade.setInHouse(Boolean.valueOf(inHouse));
+		trade.setProductId(productId);
+		trade.setSettlementDate(selltementDate);
 		return trade;
 	}
 	

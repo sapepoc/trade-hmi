@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 @Component("markUpDownRule")
 public class MarkUpDownRule extends AbstractRule {
 
+	private static final String SELL = "SELL";
+	private static final String BUY = "BUY";
 
 	@Value(value="${markupdown.partypercentage: 1}")
 	private Integer thresoldPercentage;
@@ -63,8 +65,8 @@ public class MarkUpDownRule extends AbstractRule {
 						captureTrades.add(clientTrade);
 						captureTrades.add(inhouseTrade);
 						
-						if("BUY".equalsIgnoreCase(inhouseTrade.getDirection()) 
-								&& "SELL".equalsIgnoreCase(clientTrade.getDirection())){
+						if(BUY.equalsIgnoreCase(inhouseTrade.getDirection()) 
+								&& SELL.equalsIgnoreCase(clientTrade.getDirection())){
 							
 							if((clientTrade.getRate() - inhouseTrade.getRate()) < 0){
 
@@ -76,8 +78,8 @@ public class MarkUpDownRule extends AbstractRule {
 								partyPercentage = ((clientTrade.getRate() - inhouseTrade.getRate()) / inhouseTrade.getRate())*100;
 							}
 						}
-						else if("SELL".equalsIgnoreCase(inhouseTrade.getDirection()) 
-								&& "BUY".equalsIgnoreCase(clientTrade.getDirection())) {
+						else if(SELL.equalsIgnoreCase(inhouseTrade.getDirection()) 
+								&& BUY.equalsIgnoreCase(clientTrade.getDirection())) {
 							
 							if((inhouseTrade.getRate() - clientTrade.getRate()) < 0){
 

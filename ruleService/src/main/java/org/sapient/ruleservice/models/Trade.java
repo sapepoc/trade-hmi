@@ -15,6 +15,7 @@ public class Trade {
 	private double volume;
 	private boolean inHouse;
 	private String productId;
+	private Date settlementDate;
 	
 	public String getProductId() {
 		return productId;
@@ -24,7 +25,6 @@ public class Trade {
 		this.productId = productId;
 	}
 
-	private Date settlementDate;
 	
 	public Date getSettlementDate() {
 		return settlementDate;
