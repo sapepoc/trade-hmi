@@ -20,7 +20,7 @@ app.service('tradeService',['$http', '$cookieStore', '$rootScope', '$timeout',fu
     	}).then(handleSuccess, handleError('Error in trading'));
     }
     
-    this.applyRules = function (tradeIds) {
+    this.applyRules = function (tradeIds, selectedRules) {
     	return $http({
     		url: '/applyRules',
     		method: 'POST',
