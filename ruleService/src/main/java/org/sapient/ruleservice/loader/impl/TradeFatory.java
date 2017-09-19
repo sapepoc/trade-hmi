@@ -3,7 +3,8 @@ package org.sapient.ruleservice.loader.impl;
 import java.io.File;
 import java.nio.file.Files;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -52,6 +53,8 @@ public class TradeFatory {
 		String instrument = tokens[3];
 		String direction = tokens[4];
 		Date executionDate = TimeDimension.formatter.parse(tokens[5]);
+		
+		
 		String party1 = tokens[6];
 		String party2 = tokens[7];
 		
@@ -60,7 +63,7 @@ public class TradeFatory {
 		trade.setVolume(volume);
 		trade.setInstrument(instrument);
 		trade.setDirection(direction);
-		trade.setExecutionDate(executionDate);
+		trade.setExecutionDate(LocalDateTime.ofInstant(executionDate.toInstant(), ZoneId.systemDefault()));
 		trade.setParty1(party1);
 		trade.setParty2(party2);
 		return trade;

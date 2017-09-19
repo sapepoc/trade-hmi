@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 
- * @author hgaur2
  *
  */
 @RestController
@@ -59,6 +57,13 @@ public class RuleServiceController {
 	@RequestMapping(method = RequestMethod.POST, value = "/applyRules", consumes = "application/json")
 	public @ResponseBody List<RuleResult> applyRules(@RequestBody List<String> tradeIds){
 		System.out.println("apply rule enterted on trades="+tradeIds);
+		return ruleEngineService.runRules(tradeFatory.getTrades(tradeIds));
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/applyRules", consumes = "application/json")
+	public @ResponseBody List<RuleResult> applyRules(@RequestBody List<String> tradeIds, 
+			@RequestBody List<String> ruleIds){
+		System.out.println("apply rule enterted on ruleIds="+ruleIds);
 		return ruleEngineService.runRules(tradeFatory.getTrades(tradeIds));
 	}
 }

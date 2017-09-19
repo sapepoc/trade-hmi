@@ -1,15 +1,13 @@
 package org.sapient.ruleservice.rule.impl;
 
-import java.security.InvalidParameterException;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.sapient.ruleservice.models.Trade;
 import org.sapient.ruleservice.rule.AbstractRule;
 import org.sapient.ruleservice.rule.RuleResult;
 import org.sapient.ruleservice.rule.RuleType;
-import org.sapient.utils.TimeDimension;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -45,8 +43,7 @@ public class WashTradeRule extends AbstractRule {
 						// && trade1.getProductID() == trade2.getProductID()
 						// <<<<product id is not in the bean
 						&& !(trade1.getDirection().equalsIgnoreCase(trade2.getDirection()))
-						&& TimeDimension.getDifferenceInTime(trade1.getExecutionDate(), trade2.getExecutionDate(),
-								TimeDimension.TimeType.SECONDS.getType()) < washtradeRuleDurationThreshold) {
+						&& Math.abs(ChronoUnit.SECONDS.between(trade1.getExecutionDate(), trade2.getExecutionDate())) < washtradeRuleDurationThreshold) {
 					ruleResults.add(new RuleResult("WashTradeRule", "WashTradeRule is violated!", trade1));
 					ruleResults.add(new RuleResult("WashTradeRule", "WashTradeRule is violated!", trade2));
 					idsToSkip.add(trade1.getId());

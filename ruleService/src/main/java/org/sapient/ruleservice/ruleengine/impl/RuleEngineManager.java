@@ -29,6 +29,20 @@ public class RuleEngineManager {
 	@Qualifier("javaRuleEngine")
 	private RuleEngine javaRuleEngine;
 	
+	
+	public List<RuleResult> applyRules(final List<Trade> businessObjects, final List<String> ruleIds){
+		final List<RuleResult> ruleResults = new ArrayList<RuleResult>();
+		
+		segregateRules(ruleFactory.getRules(), ruleIds).forEach((ruleType, rules)->{
+			if(RuleType.JAVA.equals(ruleType)){
+				ruleResults.addAll(javaRuleEngine.applyRules(rules, businessObjects));
+			} else {
+				ruleResults.addAll(droolsRuleEngine.applyRules(rules, businessObjects));
+			}
+		});
+		return ruleResults;
+	}
+	
 	public List<RuleResult> applyRules(final List<Trade> businessObjects){
 		final List<RuleResult> ruleResults = new ArrayList<RuleResult>();
 		segregateRules(ruleFactory.getRules()).forEach((ruleType,ruleIds)->{
@@ -39,6 +53,21 @@ public class RuleEngineManager {
 			}
 		});
 		return ruleResults;
+	}
+	
+	private Map<RuleType, List<Rule>> segregateRules(final List<Rule> rules, final List<String> ruleIds) {
+		final Map<RuleType, List<Rule>> typeWiseRules = new HashMap<>();
+		rules.forEach((rule)->{
+			if(ruleIds.contains(rule.getId())) {
+				
+				if( !typeWiseRules.containsKey(rule.type())){
+					typeWiseRules.put(rule.type(), new ArrayList<Rule>());
+				}
+				typeWiseRules.get(rule.type()).add(rule);
+				
+			}
+		});
+		return typeWiseRules;
 	}
 	
 	private Map<RuleType, List<Rule>> segregateRules(final List<Rule> rules) {

@@ -1,5 +1,6 @@
 package org.sapient.ruleservice.models;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Trade {
@@ -8,11 +9,39 @@ public class Trade {
 	private String instrument;
 	private String party1;
 	private String party2;
-	private Date executionDate;
+	private LocalDateTime executionDate;
 	private String direction;
 	private double rate;
 	private double volume;
+	private boolean inHouse;
+	private String productId;
 	
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+
+	private Date settlementDate;
+	
+	public Date getSettlementDate() {
+		return settlementDate;
+	}
+
+	public void setSettlementDate(Date settlementDate) {
+		this.settlementDate = settlementDate;
+	}
+
+	public boolean isInHouse() {
+		return inHouse;
+	}
+
+	public void setInHouse(boolean inHouse) {
+		this.inHouse = inHouse;
+	}
+
 	/**
 	 * @return the id
 	 */
@@ -79,7 +108,7 @@ public class Trade {
 	/**
 	 * @return the executionDate
 	 */
-	public Date getExecutionDate() {
+	public LocalDateTime getExecutionDate() {
 		return executionDate;
 	}
 
@@ -88,7 +117,7 @@ public class Trade {
 	/**
 	 * @param executionDate the executionDate to set
 	 */
-	public void setExecutionDate(Date executionDate) {
+	public void setExecutionDate(LocalDateTime executionDate) {
 		this.executionDate = executionDate;
 	}
 
@@ -154,4 +183,31 @@ public class Trade {
 	public void setId(String id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Trade [id=");
+		builder.append(id);
+		builder.append(", instrument=");
+		builder.append(instrument);
+		builder.append(", party1=");
+		builder.append(party1);
+		builder.append(", party2=");
+		builder.append(party2);
+		builder.append(", executionDate=");
+		builder.append(executionDate);
+		builder.append(", direction=");
+		builder.append(direction);
+		builder.append(", rate=");
+		builder.append(rate);
+		builder.append(", volume=");
+		builder.append(volume);
+		builder.append(", inHouse=");
+		builder.append(inHouse);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 }
