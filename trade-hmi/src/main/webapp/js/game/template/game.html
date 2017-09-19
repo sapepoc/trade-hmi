@@ -1,5 +1,11 @@
-<div style="">
+<div id="navDiv" style="float:left;width:180px;min-height: 876px;background-color:orange;" >
 
+
+<span style=""ng-repeat="d in ruleTypes">
+    <input type="checkbox" id="{{d}}" ng-model="selectedList[d]"/>
+    <label for="{{d.value}}">{{d}}</label>
+</span>
+<button class="btn btn-default" style="background-color: orange;" ng-click="findTrades()">Submit Types</button>
 
 </div>
 
@@ -14,21 +20,12 @@
   
 
           
-   <div ng-if="tradeAvailable" >
-               <div class="col-md-6">
 
-            <div class="btn-group" role="group">
-                       
-            </div>
-          </div>
-   
           
-   		<div>
-			<button class="btn btn-default" style="background-color: orange;" ng-click="findAlerts()">Arrest These Trades And Produce To Court</button>
-		</div>
-     <div dynamic-layout items="cards" style="width: 1150px; margin-top: 90px;""></div> 
+     <div dynamic-layout items="cards" style="width: 99%;margin-top: 90px;min-height: 600px;border-style: solid;border-radius: 10px;"></div> 
    
-   
+      <div ng-if="tradeAvailable" >
+               
    
  <!--   	<div>
    		<table class="table">
@@ -73,6 +70,11 @@
 			</div>
     	</div>
   	</div>
+  	
+  	<div style="float:left;margin-bottom: 18px;margin-top: 5px;">
+			<button class="btn btn-default" style="background-color: orange;" ng-click="findAlerts()">Evaluate and Arrest These Trades</button>
+		</div>
+  	
  </div>
  </div>
 </div> 

@@ -25,6 +25,7 @@ app.config(function($routeProvider) {
     
 });
 
+
 app.run(function($rootScope, $location, $cookieStore, $http){
     // keep user logged in after page refresh
     console.log('Trade Manager App Refreshed ');

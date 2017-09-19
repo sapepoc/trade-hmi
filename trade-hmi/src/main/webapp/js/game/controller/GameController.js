@@ -5,7 +5,12 @@
 					"GameController",
 					function($location, $scope, tradeService, $rootScope,
 							$timeout) {
+						
+						$scope.selectedList = {};
 
+						$scope.ruleTypes = ['AbnomalVolume', 'WashTradeRule', 'ABC'];
+						
+						
 						$scope.showingMoreText = false;
 						var selectedId = 0;
 						var selectedIdss = new Array();
@@ -22,6 +27,13 @@
 						var alertsAvailable = false;
 						$scope.findTrades = function() {
 
+							var selectedRules = new Array();
+							angular.forEach($scope.selectedList, function (selected, d) {
+						        if (selected) {
+						        	selectedRules.push(d);
+						        }
+						    });
+							$scope.selectedTypes=selectedRules;
 							// Restart the alerts
 							$scope.alertsAvailable = false;
 							$scope.alerts = [];
@@ -47,7 +59,9 @@
 												'template\":\"app/partials/work1.html\", \"instrument');
 
 								$scope.cards = JSON.parse(myJsonString);
-
+								
+								
+								
 								$scope.headerContents = [ 'Id', 'Part1',
 										'Party2', 'Instrument',
 										'ExecutionDate', 'Direction', 'Rate',
@@ -141,6 +155,7 @@
 							}
 						}
 
+
 						$scope.selectedIds = "";
 						$scope.selectCard = function(id) {
 							if (selectedIdss.indexOf(id) > -1) {
@@ -158,8 +173,8 @@
 						}
 						$scope.findAlerts = function() {
 							var selectedTradeIds = $scope.selectedBusinessIds;
-							
-							tradeService.applyRules(selectedTradeIds).then(
+							var selectedRuleTypes = $scope.selectedTypes;
+							tradeService.applyRules(selectedTradeIds, selectedRuleTypes).then(
 									function(response) {
 										ruleResponseProcess(response);
 									});
