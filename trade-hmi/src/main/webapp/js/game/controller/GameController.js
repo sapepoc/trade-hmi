@@ -27,7 +27,6 @@
 							$scope.alerts = [];
 							selectedIdss = new Array();
 							tradeService.findTrades().then(function(response) {
-								document.write('findTrades');
 								tradeResponseProcess(response);
 							});
 						};
