@@ -1,0 +1,68 @@
+//created on: Mar 20, 2017
+package com.rules.counter
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import org.sapient.ruleengin.trade.WashTradeMap;
+import org.sapient.ruleengin.trade.WashTrade;
+import org.sapient.entites.trade.Trades.Trade;
+import org.sapient.ruleengin.trade.model.TradeType;
+import org.sapient.ruleengin.trade.TradeIdentifier
+import org.sapient.ruleengin.trade.WashTradeIdentifier;
+import org.sapient.ruleengin.trade.TradeHolder;
+
+
+rule "Raised a alarm when a wash tarde detect"
+when
+ $washTrades : ArrayList(size>0) from accumulate(
+         $trade : Trade($tradeType : tradeType, $company : company, $security : security, $quantity : quantity),
+         init( 
+         	System.out.println("Initilize-Enter");
+         	List<WashTrade> washTrades = new ArrayList<WashTrade>();
+         	WashTradeMap washTradeMap = new WashTradeMap();
+         	System.out.println("Initilize-leave");
+         	),
+         action( 
+        		TradeIdentifier tradeIdentifier = new WashTradeIdentifier($security, $company, "2016-01-01", $quantity);
+        		TradeHolder tradeHolder = washTradeMap.getTradeHolder(tradeIdentifier);
+        		if(tradeHolder == null)
+        		{
+        			washTradeMap.putTrades($trade);
+        		}
+        		else
+        		{
+        			Set<Trade> trades = tradeHolder.getOppositeTrade($tradeType);
+        			if(trades == null || trades.isEmpty())
+        			{
+        				tradeHolder.addTrade($trade);
+        			}
+        			else
+        			{
+        				//TODO: check the trade is a wash trade
+        				//quanity must be same
+        				//threshold : should be less than 1 hour
+        				Trade removedTrade =null;
+        				
+        				for(Trade trade : trades)
+        				{
+        					if(trade.getQuantity() == $quantity)
+        					{
+        						WashTrade washTrade = new WashTrade();
+        						washTrade.addTrade(trade);
+        						washTrade.addTrade($trade);
+        						washTrades.add(washTrade);
+        						removedTrade=trade;
+        						break;
+        					}
+        				}
+        				trades.remove(removedTrade);
+        			}
+        		}
+				System.out.println($trade); 
+            ),
+             reverse( 	System.out.println("I am doing reverse");  ),
+         result( washTrades) )
+then
+ 	System.out.println("$washTrades: " + $washTrades);
+end

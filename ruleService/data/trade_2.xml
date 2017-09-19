@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Payload>
+	<trade>
+		<user>om</user>
+		<security>hdfc</security>
+		<amount>22</amount>
+		<date>1-1-2017</date>
+		<tuseless>trade useless data</tuseless>
+	</trade>
+
+	<extra>
+		<other>other data</other>
+		<useless>useless data</useless>
+	</extra>
+</Payload>

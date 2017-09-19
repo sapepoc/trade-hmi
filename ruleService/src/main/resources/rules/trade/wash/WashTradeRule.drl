@@ -1,0 +1,26 @@
+//created on: Mar 20, 2017
+
+package com.rules.counter
+
+import org.sapient.ruleengin.trade.model.TradeData;
+import org.sapient.ruleengin.trade.model.TradeType;
+import org.sapient.ruleengin.trade.WashTrade;
+import org.sapient.ruleengin.facts.FactProcessor;
+
+global FactProcessor<Fact> factProcessor;
+rule "Wash trade rule"
+when
+$buyTrade : TradeData($security : security, $company : company, $quantity : quantity, 
+tradeType == TradeType.BUY)
+
+$sellTrade : TradeData(security == $buyTrade.security
+				&& company == $buyTrade.company 
+				&& tradeType == TradeType.SELL
+				&& quantity == $buyTrade.quantity
+				&& dateTime == $buyTrade.dateTime)
+then
+	factProcessor.process(new WashTrade($buyTrade, $sellTrade));
+	delete($buyTrade);
+	delete($sellTrade);
+end
+

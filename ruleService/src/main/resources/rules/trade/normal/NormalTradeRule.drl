@@ -1,0 +1,52 @@
+//created on: Mar 20, 2017
+package com.rules.counter
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import org.sapient.entites.trade.Trades.Trade;
+import org.sapient.ruleengin.trade.model.TradeType;
+import org.sapient.ruleengin.trade.TradeHolder;
+import org.sapient.ruleengin.trade.WashTrade;
+import org.sapient.ruleengin.trade.alarm.WashTradeEvent
+import org.sapient.ruleengin.alarm.core.AlarmEventListener
+global AlarmEventListener alarmEventListener;
+
+
+/**rule "Raised a alarm when a wash tarde found"
+when 
+$washTrades : ArrayList(size>0) from accumulate(
+         $trade : Trade($tradeType : tradeType, $quantity : quantity),
+         init( 
+         	List<WashTrade> washTrades = new ArrayList<WashTrade>();
+         	TradeHolder tradeHolder = new TradeHolder();
+         	),
+         action( 
+        		Set<Trade> trades = tradeHolder.getOppositeTrade($tradeType);
+        		if(trades == null || trades.isEmpty())
+        		{
+        			tradeHolder.addTrade($trade);
+        		}
+        		else
+        		{
+        			Trade removedTrade =null;
+        			for(Trade trade : trades)
+        			{
+        				if(trade.getQuantity() == $quantity)
+        				{
+        					WashTrade washTrade = new WashTrade();
+        					washTrade.addTrade(trade);
+        					washTrade.addTrade($trade);
+        					washTrades.add(washTrade);
+        					removedTrade=trade;
+        					break;
+        				}
+        			}
+        			trades.remove(removedTrade);
+        		}
+            ),
+             reverse( 	System.out.println("I am doing reverse");  ),
+         result( washTrades) )
+then
+ 	alarmEventListener.addEvent(new WashTradeEvent($washTrades));
+end**/

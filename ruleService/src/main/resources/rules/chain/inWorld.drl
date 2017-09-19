@@ -1,0 +1,48 @@
+//created on: Mar 24, 2017
+package rules.world
+ 
+import org.sapient.model.Location;
+
+dialect  "mvel"
+
+query isContainedIn( String x, String y )
+  Location( x, y; ) from entry-point "world"
+  or
+  ( Location( z, y; ) from entry-point "world" and isContainedIn( x, z; ) )
+end
+
+rule "check decision"
+when
+    isContainedIn("Eiffel tower", "World"; )
+then
+    System.out.println( "Decision taken--Eiffel tower is in the World" );
+    System.out.println( "-----------------------------" );
+    System.out.println( "-----------------------------" );
+    System.out.println( "-----------All Facts-----------------" );
+end
+
+rule "check decision false"
+when
+    not isContainedIn("Eiffel tower", "World"; )
+then
+    System.out.println( "Decision taken--Eiffel tower is not in the World" );
+    System.out.println( "-----------------------------" );
+    System.out.println( "-----------------------------" );
+    System.out.println( "-----------All Facts-----------------" );
+end
+
+rule "get all facts"
+when
+    isContainedIn(entity, location; )
+then
+    System.out.println( "Entity " + entity + " is in " + location );
+end
+
+
+rule "Run tourist rule"
+when
+   $l: Location(entity=="Paris") from entry-point "Tourist"
+then
+    System.out.println( "This is Paris and I will only run for Tourist stream" + $l.entity);
+
+end
