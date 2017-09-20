@@ -44,10 +44,11 @@
 						    	alert('Please select at least one rule');
 						    }else{
 							$scope.selectedTypes=selectedRules;
-							// Restart the alerts
+							// Reinitialise the alerts
 							$scope.alertsAvailable = false;
 							$scope.alerts = [];
 							selectedIdss = new Array();
+							$scope.selectedBusinessIds = selectedIdss;
 							tradeService.findTrades().then(function(response) {
 								tradeResponseProcess(response);
 							});
