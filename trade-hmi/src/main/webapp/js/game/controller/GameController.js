@@ -53,6 +53,11 @@
 								tradeResponseProcess(response);
 							});
 						}
+						    var vm = this;
+						    var start = new Date().getTime();
+						    while (new Date().getTime() < start + 150);
+
+						    setTimeout(vm.removeFirstCard, 150);
 					};
 
 						function tradeResponseProcess(response) {
@@ -80,7 +85,6 @@
 										'Volume', 'Select' ];
 
 								$scope.deleteCard = function(id) {
-									alert(id);
 									var index = -1;
 									var i;
 									for (i in $scope.cards) {
@@ -95,8 +99,9 @@
 								}
 								$scope.filteredItems = $scope.cards;
 								$scope.removeFirstCard = function() {
-									$scope
-											.deleteCard($scope.filteredItems[0].id)
+									
+									
+									$scope.deleteCard($scope.filteredItems[1].id)
 								}
 
 								$scope.filters = [ [ [ 'tabs', 'contains',
