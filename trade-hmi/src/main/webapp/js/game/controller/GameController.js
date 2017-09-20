@@ -10,7 +10,7 @@
 
 						$scope.ruleTypes = ['AbnomalVolume', 'WashTradeRule', 'MarkUpDownRule'];
 						
-						
+						$scope.btnDisabled= false;
 						$scope.showingMoreText = false;
 						var selectedId = 0;
 						var selectedIdss = new Array();
@@ -22,10 +22,16 @@
 								});
 							}, 20);
 						}
+						
+						$scope.isEvaluateBtnDisabled=function()
+					    {
+					      return $scope.btnDisabled;
+					    };
 
 						var tradeAvailable = false;
 						var alertsAvailable = false;
 						$scope.findTrades = function() {
+							$scope.btnDisabled= false;
 							var isAnySelected = false;
 							var selectedRules = new Array();
 							angular.forEach($scope.selectedList, function (selected, d) {
@@ -179,6 +185,7 @@
 						$scope.findAlerts = function() {
 							var selectedTradeIds = $scope.selectedBusinessIds;
 							var selectedRuleTypes = $scope.selectedTypes;
+							$scope.btnDisabled= true; 
 							tradeService.applyRules(selectedTradeIds, selectedRuleTypes).then(
 									function(response) {
 										ruleResponseProcess(response);
