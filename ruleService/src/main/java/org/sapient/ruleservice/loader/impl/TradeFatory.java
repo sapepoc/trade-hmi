@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
@@ -84,17 +85,21 @@ public class TradeFatory {
 	
 	public List<Trade> getTrades(final Collection<String> ids){
 		final List<Trade> trades = new ArrayList<>();
-		ids.forEach((id)->{
-			trades.add(tradeMap.get(id));
-		});
+		if(Objects.nonNull(ids)){
+			ids.forEach((id)->{
+				trades.add(tradeMap.get(id));
+			});
+		}
 		return trades;
 	}
 	
 	public List<Trade> findTrades(final Collection<Integer> ids){
 		final List<Trade> trades = new ArrayList<>();
-		ids.forEach((id)->{
-			trades.add(tradeMap.get(String.valueOf(id)));
-		});
+		if(Objects.nonNull(ids)){
+			ids.forEach((id)->{
+				trades.add(tradeMap.get(String.valueOf(id)));
+			});
+		}
 		return trades;
 	}
 

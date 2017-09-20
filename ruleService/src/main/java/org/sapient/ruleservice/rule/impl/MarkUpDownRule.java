@@ -47,7 +47,7 @@ public class MarkUpDownRule extends AbstractRule {
 			clientTrades.forEach((clientTrade)->{
 				
 				if(clientTrade.getInstrument().equals(inhouseTrade.getInstrument())
-						&& clientTrade.getExecutionDate().equals(inhouseTrade.getSettlementDate())
+						&& clientTrade.getSettlementDate().equals(inhouseTrade.getSettlementDate())
 						&& clientTrade.getProductId().equals(inhouseTrade.getProductId())
 						&& clientTrade.getVolume() == inhouseTrade.getVolume()
 						&& !clientTrade.getDirection().equals(inhouseTrade.getDirection())){
@@ -59,7 +59,7 @@ public class MarkUpDownRule extends AbstractRule {
 					
 					boolean isMarkDownAlertRaised = false;
 					double partyPercentage = 0;
-					if(executionTimeDiff < timeThresoldInMins){
+					if(executionTimeDiff <= timeThresoldInMins){
 
 						List<Trade> captureTrades = new ArrayList<>();
 						captureTrades.add(clientTrade);
@@ -95,14 +95,15 @@ public class MarkUpDownRule extends AbstractRule {
 						
 						if(partyPercentage > thresoldPercentage){
 							
-							ruleResults.add(new RuleResult("Unusual Markdownp detected for "+ inhouseTrade.getInstrument(), 
-									"Markup trade rule-violated!- partypercentage="+partyPercentage, captureTrades));
+							ruleResults.add(new RuleResult("Unusual Markup detected for "+ inhouseTrade.getInstrument(), 
+									"Markup trade rule-violated! for trades-"+ inhouseTrade.getTradeId() +" ,"
+							+ clientTrade.getTradeId(), captureTrades));
 						}
 						
 						if(isMarkDownAlertRaised){
-							
 							ruleResults.add(new RuleResult("Unusual Markdown detected for "+ inhouseTrade.getInstrument(), 
-									"Markdown trade rule-violated!- partypercentage="+partyPercentage, captureTrades));
+									"Markdown trade rule-violated! for trades-"+ inhouseTrade.getTradeId() +" ,"
+							+ clientTrade.getTradeId(), captureTrades));
 						}
 						
 					}
@@ -113,7 +114,4 @@ public class MarkUpDownRule extends AbstractRule {
 
 		return ruleResults;
 	}
-
-	
-
 }

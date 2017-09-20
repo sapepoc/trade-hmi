@@ -55,4 +55,17 @@ public class RuleResult {
 	public void setBusinessObject(Object businessObject) {
 		this.businessObject = businessObject;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RuleResult [ruleName=");
+		builder.append(ruleName);
+		builder.append(", message=");
+		builder.append(message);
+		builder.append(", businessObject=");
+		builder.append(businessObject);
+		builder.append("]");
+		return builder.toString();
+	}
 }
