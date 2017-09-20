@@ -8,7 +8,7 @@
 						
 						$scope.selectedList = {};
 
-						$scope.ruleTypes = ['AbnomalVolume', 'WashTradeRule', 'MarkUpDownRule'];
+						$scope.ruleTypes = ['WashTradeRule', 'MarkUpDownRule', 'AbnomalTradingRule'];
 						
 						$scope.btnDisabled= false;
 						$scope.showingMoreText = false;
