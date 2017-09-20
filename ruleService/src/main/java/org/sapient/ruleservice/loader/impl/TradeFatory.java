@@ -4,7 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.text.ParseException;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -22,19 +22,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TradeFatory {
-	
-	@Value(value="${trade.csv.file.path}")
+
+	@Value(value = "${trade.csv.file.path}")
 	private String filePath;
 	private Map<String, Trade> tradeMap;
-	
+
 	@PostConstruct
 	private void loadData() {
 		tradeMap = new HashMap<>();
 		try {
-			List<String> lines = Files.readAllLines(new File(filePath).toPath());
+			List<String> lines = Files
+					.readAllLines(new File(filePath).toPath());
 			int i = 0;
-			for(String line : lines ){
-				if(i != 0){
+			for (String line : lines) {
+				if (i != 0) {
 					final Trade trade = formTrade(line);
 					tradeMap.put(trade.getId(), trade);
 				}
@@ -44,9 +45,9 @@ public class TradeFatory {
 			throw new RuntimeException("Problem in trade data loading...", e);
 		}
 	}
-	
-	private Trade formTrade(final String line) throws ParseException{
-		Trade trade = new  Trade();
+
+	private Trade formTrade(final String line) throws ParseException {
+		Trade trade = new Trade();
 		String[] tokens = line.split(",");
 		String id = tokens[0];
 		String tradeId = tokens[1];
@@ -54,23 +55,22 @@ public class TradeFatory {
 		double volume = Double.parseDouble(tokens[3]);
 		String instrument = tokens[4];
 		String direction = tokens[5];
-		Date executionDate = TimeDimension.formatter.parse(tokens[6]);
-		
-		
+		LocalDateTime executionDate = LocalDateTime.parse(tokens[6], DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 		String party1 = tokens[7];
 		String party2 = tokens[8];
-		
+
 		String inHouse = tokens[9];
 		String productId = tokens[10];
 		Date selltementDate = TimeDimension.formatter.parse(tokens[11]);
-		
 		trade.setId(id);
 		trade.setTradeId(tradeId);
 		trade.setRate(rate);
 		trade.setVolume(volume);
 		trade.setInstrument(instrument);
 		trade.setDirection(direction);
-		trade.setExecutionDate(LocalDateTime.ofInstant(executionDate.toInstant(), ZoneId.systemDefault()));
+		trade.setExecutionDate(executionDate);
+		// trade.setExecutionDate(executionDate.toInstant()
+		// .atZone(ZoneId.systemDefault()).toLocalDateTime());
 		trade.setParty1(party1);
 		trade.setParty2(party2);
 		trade.setInHouse(Boolean.valueOf(inHouse));
@@ -78,29 +78,30 @@ public class TradeFatory {
 		trade.setSettlementDate(selltementDate);
 		return trade;
 	}
-	
-	public List<Trade> getTrades(){
+
+	public List<Trade> getTrades() {
 		return new ArrayList<>(tradeMap.values());
 	}
-	
-	public List<Trade> getTrades(final Collection<String> ids){
+
+	public List<Trade> getTrades(final Collection<String> ids) {
 		final List<Trade> trades = new ArrayList<>();
-		if(Objects.nonNull(ids)){
-			ids.forEach((id)->{
+		if (Objects.nonNull(ids)) {
+			ids.forEach((id) -> {
 				trades.add(tradeMap.get(id));
 			});
 		}
 		return trades;
 	}
-	
-	public List<Trade> findTrades(final Collection<Integer> ids){
+
+	public List<Trade> findTrades(final Collection<Integer> ids) {
 		final List<Trade> trades = new ArrayList<>();
-		if(Objects.nonNull(ids)){
-			ids.forEach((id)->{
+		if (Objects.nonNull(ids)) {
+			ids.forEach((id) -> {
 				trades.add(tradeMap.get(String.valueOf(id)));
 			});
 		}
 		return trades;
 	}
+	
 
 }

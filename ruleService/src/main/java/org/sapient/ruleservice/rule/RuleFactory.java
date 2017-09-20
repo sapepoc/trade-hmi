@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.sapient.ruleservice.rule.impl.AbnomalTradingRule;
+import org.sapient.ruleservice.rule.impl.BenchMarkRule;
 import org.sapient.ruleservice.rule.impl.MarkUpDownRule;
 import org.sapient.ruleservice.rule.impl.WashTradeRule;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class RuleFactory {
 	@Autowired
 	private MarkUpDownRule markUpDownRule;
 	
+	@Autowired
+	private BenchMarkRule benchMarkRule;
+	
 	private List<Rule> rules;
 	
 	@PostConstruct
@@ -31,6 +35,7 @@ public class RuleFactory {
 		rules.add(abnomalTradingRule);
 		rules.add(washTradeRule);
 		rules.add(markUpDownRule);
+		rules.add(benchMarkRule);
 	}
 	
 	public List<Rule> getRules(){
