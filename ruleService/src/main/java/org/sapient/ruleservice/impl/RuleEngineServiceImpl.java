@@ -25,7 +25,7 @@ public class RuleEngineServiceImpl implements RuleEngineService {
 	@Override
 	public List<RuleResult> runRules(final List<Trade> businessObjects,
 			final List<String> ruleIds) {
-		return ruleEngineManager.applyRules(businessObjects);
+		return ruleEngineManager.applyRules(businessObjects,ruleIds);
 	}
 
 }
