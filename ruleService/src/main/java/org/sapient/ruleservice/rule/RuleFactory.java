@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import org.sapient.ruleservice.rule.impl.AbnomalVolumeRule;
+import org.sapient.ruleservice.rule.impl.AbnomalTradingRule;
 import org.sapient.ruleservice.rule.impl.MarkUpDownRule;
 import org.sapient.ruleservice.rule.impl.WashTradeRule;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class RuleFactory {
 	
 	@Autowired
-	private AbnomalVolumeRule abnomalVolumeRule;
+	private AbnomalTradingRule abnomalTradingRule;
 	
 	@Autowired
 	private WashTradeRule washTradeRule;
@@ -28,7 +28,7 @@ public class RuleFactory {
 	@PostConstruct
 	private void init(){
 		rules = new ArrayList<Rule>();
-		rules.add(abnomalVolumeRule);
+		rules.add(abnomalTradingRule);
 		rules.add(washTradeRule);
 		rules.add(markUpDownRule);
 	}
