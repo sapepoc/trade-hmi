@@ -15,13 +15,13 @@
 
 <div class="container" style="color: white;min-height: 780px;background: url(http://www.addictinggames.com/a/img/ag_bg.jpg);min-width: 1220px;float: right;margin-right: 46px;">
   <div>
-  	<h3>So you are here ....</h3><p>Finally you found the courage to fight injustice</p> 
+  	<h3>Be a Surveillance Ninja.</h3><p>Finally you found the courage to fight injustice..</p> 
   </div>
   <div ng-if="tradeAvailable" >
     <div dynamic-layout items="cards" style="width: 99%;min-height: 550px;border-style: solid;border-radius: 10px;"></div> 
     
   	<div style="float:left;margin-bottom: 18px;margin-top: 5px;width: 260px;">
-			<button class="btn btn-default" style="background-color: orange;" ng-click="findAlerts()">Evaluate and Arrest These Trades</button>
+			<button id="evalBtn"  class="btn btn-default" style="background-color: orange;" ng-click="findAlerts()"  ng-disabled=isEvaluateBtnDisabled()>Evaluate and Arrest These Trades</button>
 	</div>
 	
 	<div ng-if="alertsAvailable" style="width: 100%">
